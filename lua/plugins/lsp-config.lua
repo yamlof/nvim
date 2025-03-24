@@ -9,7 +9,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "clangd", "pylsp" },
+                ensure_installed = { "lua_ls", "clangd", "pylsp"},
             })
         end,
     },
@@ -25,36 +25,16 @@ return {
             lspconfig.clangd.setup({
                 capabilities = capabilities,
             })
-            lspconfig.pylsp.setup({
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
                 settings = {
-                    pylsp = {
-                        plugins = {
-                            pycodestyle = {
-                                ignore = { 'W391', 'E231', 'E302', 'E305', 'E202', 'W291', 'E226', 'E41' },
-                                maxLineLength = 200
-                            },
-                            black = { enabled = true },
-                            autopep8 = { enabled = false },
-                            yapf = { enabled = false },
-                            -- linter options
-                            pylint = { enabled = true, executable = "pylint" },
-                            pyflakes = { enabled = false },
-                            -- type checker
-                            pylsp_mypy = { enabled = true },
-                            -- auto-completion options
-                            jedi_completion = { fuzzy = true },
-                            -- import sorting
-                            pyls_isort = { enabled = true },
-
+                    python = {
+                        analysis = {
+                            typeCheckingMode = 'off',
+                            autoSearchPath = 'true',
                         }
                     }
-                },
-
-                flags = {
-                    debounce_text_changes = 200,
-                },
-
-                capabilities = capabilities
+                }
             })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
