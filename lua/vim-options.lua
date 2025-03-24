@@ -9,3 +9,4 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.wo.relativenumber = true
 vim.opt.scrolloff = 9
+vim.o.signcolumn = "no"
